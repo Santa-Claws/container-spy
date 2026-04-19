@@ -1,6 +1,6 @@
 module github.com/tmac/container-spy
 
-go 1.24
+go 1.25
 
 require (
 	github.com/atotto/clipboard v0.1.4 // indirect
