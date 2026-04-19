@@ -111,7 +111,13 @@ CONTAINER_SPY_MODE=web docker compose up -d
 # or: make run-web
 ```
 
-Then open [http://localhost:8080](http://localhost:8080). The page polls for updates every 5 seconds. Port can be changed with `CONTAINER_SPY_ADDR=:9090`.
+Then open [http://localhost:8080](http://localhost:8080). The page polls for updates every 5 seconds.
+
+If port 8080 is already in use, override it:
+
+```sh
+CONTAINER_SPY_MODE=web CONTAINER_SPY_ADDR=:9090 docker compose up -d
+```
 
 The web dashboard shows the same grouped view as the TUI. Configuration (adding servers, managing groups) is TUI-only.
 
