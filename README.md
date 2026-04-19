@@ -40,14 +40,16 @@ git clone https://github.com/Santa-Claws/container-spy.git
 cd container-spy
 ```
 
+> **Important:** all commands below must be run from the repo root (`container-spy/`). If you `cd` into a subdirectory and run `docker compose`, it will fail with "no configuration file provided".
+
 ### 2. Add your SSH keys
 
-Create a `keys/` directory and copy in the private key(s) you use to access your servers:
+From the repo root, create a `keys/` directory and copy in the private key(s) you use to access your servers:
 
 ```sh
 mkdir keys
-cp ~/.ssh/id_rsa keys/id_rsa
-chmod 600 keys/id_rsa
+cp ~/.ssh/id_ed25519 keys/id_ed25519   # or id_rsa, etc.
+chmod 600 keys/*
 ```
 
 You can add multiple keys; you'll specify which key to use per server in the TUI.
