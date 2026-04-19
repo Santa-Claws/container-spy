@@ -29,9 +29,12 @@ func NewClient(srv config.Server) (*client.Client, error) {
 			DialContext: helper.Dialer,
 		},
 	}
+	// WithHost must come before WithHTTPClient: WithHost calls
+	// sockets.ConfigureTransport which would overwrite our SSH dialer if
+	// applied after WithHTTPClient.
 	return client.NewClientWithOpts(
-		client.WithHTTPClient(httpClient),
 		client.WithHost(helper.Host),
+		client.WithHTTPClient(httpClient),
 		client.WithAPIVersionNegotiation(),
 	)
 }
