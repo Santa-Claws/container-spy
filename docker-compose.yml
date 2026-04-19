@@ -1,0 +1,31 @@
+version: "3.9"
+
+services:
+  container-spy:
+    build: .
+    image: container-spy:latest
+    container_name: container-spy
+
+    # TUI mode requires a real TTY. Use `docker compose run` for TUI,
+    # `docker compose up -d` for web mode.
+    stdin_open: true
+    tty: true
+
+    environment:
+      # Set to "web" to run the HTTP dashboard instead of the TUI.
+      CONTAINER_SPY_MODE: "${CONTAINER_SPY_MODE:-tui}"
+      CONTAINER_SPY_CONFIG: /config/config.yaml
+      # Optional: override listen address for web mode (default :8080).
+      # CONTAINER_SPY_ADDR: ":8080"
+
+    volumes:
+      # SSH private keys (read-only). Must match ssh_key paths configured in the TUI.
+      - ./keys:/keys:ro
+      # Persistent configuration (groups, servers). Writable so TUI edits are saved.
+      - ./config:/config
+
+    ports:
+      # Only meaningful in web mode; harmless in TUI mode.
+      - "8080:8080"
+
+    restart: unless-stopped

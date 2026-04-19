@@ -1,0 +1,81 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: #0d0d0d;
+  color: #d4d4d4;
+  font-family: 'Cascadia Code', 'Fira Code', 'Courier New', monospace;
+  font-size: 14px;
+  min-height: 100vh;
+}
+
+header {
+  background: #1a1a2e;
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  border-bottom: 1px solid #333;
+}
+
+header h1 {
+  color: #5bc0eb;
+  font-size: 1.2rem;
+  letter-spacing: 0.1em;
+}
+
+#refresh-time {
+  color: #666;
+  font-size: 0.8rem;
+  margin-left: auto;
+}
+
+main { padding: 16px 20px; }
+
+.error {
+  background: #3a0000;
+  color: #ff6b6b;
+  padding: 8px 12px;
+  border-radius: 4px;
+  margin-bottom: 12px;
+}
+.hidden { display: none; }
+
+.group-header {
+  color: #f0c040;
+  font-weight: bold;
+  padding: 12px 4px 4px;
+  font-size: 0.95rem;
+  letter-spacing: 0.05em;
+}
+.group-header:first-child { padding-top: 4px; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 8px;
+}
+
+thead th {
+  text-align: left;
+  color: #5bc0eb;
+  padding: 4px 8px;
+  border-bottom: 1px solid #333;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+}
+
+tbody tr:hover { background: #1e1e2e; }
+
+td {
+  padding: 5px 8px;
+  border-bottom: 1px solid #1a1a1a;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 320px;
+}
+
+.state-running { color: #5af078; }
+.state-exited, .state-dead { color: #ff6b6b; }
+.state-paused, .state-restarting { color: #f0c040; }
+.state-other { color: #aaa; }
