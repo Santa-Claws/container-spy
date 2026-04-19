@@ -47,9 +47,9 @@ func NewServers(cfg *config.Config, cfgPath string, keys tui.KeyMap) Servers {
 // SetSize updates dimensions.
 func (s *Servers) SetSize(w, h int) { s.width = w; s.height = h }
 
-func (s Servers) Init() tea.Cmd { return nil }
+func (s *Servers) Init() tea.Cmd { return nil }
 
-func (s Servers) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
+func (s *Servers) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	// Handle form/confirm message results first (they arrive as messages in the next Update cycle).
 	switch msg := msg.(type) {
 	case components.FormSubmittedMsg:
@@ -172,7 +172,7 @@ func (s *Servers) deleteServer(id string) {
 	}
 }
 
-func (s Servers) View() string {
+func (s *Servers) View() string {
 	title := lipgloss.NewStyle().Bold(true).Foreground(lipgloss.Color("12")).Render("  Servers")
 
 	if s.mode == serverAdd || s.mode == serverEdit {
@@ -197,7 +197,7 @@ func (s Servers) View() string {
 		)
 }
 
-func (s Servers) renderList() string {
+func (s *Servers) renderList() string {
 	if len(s.cfg.Servers) == 0 {
 		return lipgloss.NewStyle().Foreground(lipgloss.Color("8")).Render(
 			"  No servers configured. Press [a] to add one.",

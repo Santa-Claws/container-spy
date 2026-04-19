@@ -164,10 +164,10 @@ func formatUptime(t time.Time) string {
 }
 
 // Init implements tea.Model.
-func (d Dashboard) Init() tea.Cmd { return nil }
+func (d *Dashboard) Init() tea.Cmd { return nil }
 
 // Update implements tea.Model.
-func (d Dashboard) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
+func (d *Dashboard) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	switch msg := msg.(type) {
 	case tea.KeyMsg:
 		switch {
@@ -203,7 +203,7 @@ func (d Dashboard) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 }
 
 // View implements tea.Model.
-func (d Dashboard) View() string {
+func (d *Dashboard) View() string {
 	if len(d.rows) == 0 {
 		hint := lipgloss.NewStyle().Foreground(lipgloss.Color("8")).Render(
 			"\n  No containers found.\n\n  Press [s] to add a server, or wait for the first poll.\n\n  Hint: use [g] to manage groups.",

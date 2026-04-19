@@ -89,9 +89,9 @@ func (g *Groups) refreshContainers() {
 	})
 }
 
-func (g Groups) Init() tea.Cmd { return nil }
+func (g *Groups) Init() tea.Cmd { return nil }
 
-func (g Groups) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
+func (g *Groups) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	// Handle form/confirm message results (they arrive in the next Update cycle).
 	switch msg := msg.(type) {
 	case components.FormSubmittedMsg:
@@ -241,7 +241,7 @@ func (g *Groups) deleteGroup(id string) {
 	}
 }
 
-func (g Groups) View() string {
+func (g *Groups) View() string {
 	title := lipgloss.NewStyle().Bold(true).Foreground(lipgloss.Color("12")).Render("  Groups")
 
 	if g.mode == groupModeAdd {
@@ -279,7 +279,7 @@ func (g Groups) View() string {
 	return title + "\n\n" + panes + "\n\n" + help
 }
 
-func (g Groups) renderGroupPane(w int) string {
+func (g *Groups) renderGroupPane(w int) string {
 	header := lipgloss.NewStyle().Bold(true).Foreground(lipgloss.Color("8")).Render("GROUPS")
 	if len(g.cfg.Groups) == 0 {
 		return header + "\n" + lipgloss.NewStyle().Foreground(lipgloss.Color("8")).Render("  (none) press [a]")
@@ -303,7 +303,7 @@ func (g Groups) renderGroupPane(w int) string {
 	return strings.Join(lines, "\n")
 }
 
-func (g Groups) renderContainerPane(w int) string {
+func (g *Groups) renderContainerPane(w int) string {
 	header := lipgloss.NewStyle().Bold(true).Foreground(lipgloss.Color("8")).Render("CONTAINERS  [space=toggle]")
 
 	// Build current group's assignment set for quick lookup.
